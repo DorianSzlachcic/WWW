@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 1</title>
+</head>
+<body>
+    <button style="position: absolute;"
+    onmouseover="this.style.left=''+(Math.random()*100)+'%';">
+    Kliknij!</button><br><br>
+
+    <p>Przycisk po najechaniu na niego myszką zmienia swoje położenie względem lewej krawędzi ekranu. Jego położenie jest określane za pomocą funkcji random().</p>
+
+    <button style="background-color: green; position: absolute;" 
+    onmouseover="this.style.top=''+(Math.random()*100)+'%';">
+    Kliknij!</button><br>
+
+    <button style="position: absolute; background-color: red;" 
+    onmouseover="this.style.top=''+(Math.random()*100)+'%'; this.style.left=''+(Math.random()*100)+'%';">
+    Kliknij!</button>
+</body>
+</html>
