@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 5</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table.A, table.A th, table.A td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+            margin: 20px;
+            vertical-align: top;
+        }
+
+        table.A th {
+            background: orange;
+        }
+
+        table.A tr:last-child {
+            background: yellow;
+            font-weight: bold;
+        }
+
+        table.B, table.B th, table.B td {
+            border: 1px solid black;
+            padding: 5px;
+            text-align: center;
+            margin: 30px;
+        }
+
+        table.B th {
+            background: green;
+        }
+
+        table.B tr:last-child {
+            background: greenyellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <table class="A">
+        <tr><th>Cel</th><th>Data</th><th>Kwota</th></tr>
+        <tr><td>Jedzenie</td><td rowspan="2">05.09.2021r</td><td>100 zł</td></tr>
+        <tr><td>Czynsz</td><td>850 zł</td></tr>
+        <tr><td>Internet</td><td>15.10.2021r</td><td>50 zł</td></tr>
+        <tr><td>Ubrania</td><td>24.09.2021r</td><td>250 zł</td></tr>
+        <tr><td colspan="2">Razem</td><td>100 zł</td></tr>
+    </table>
+    <br><br>
+    <table class="B">
+        <tr><th>Przedmiot</th><th>Nazwisko</th><th>Ocena</th></tr>
+        <tr><td rowspan="4">Język Polski</td><td>Nowak</td><td>5</td></tr>
+        <tr><td>Kowalski</td><td>3+</td></tr>
+        <tr><td>Mazurkiewicz</td><td>4</td></tr>
+        <tr><td>Bielak</td><td>2</td></tr>
+        <tr><td colspan="2">Średnia</td><td>3,63</td></tr>
+    </table>
+</body>
+</html>

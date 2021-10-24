@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 10</title>
+    <style>
+        input {
+            width: 30px;
+        }
+    </style>
+</head>
+<body>
+    <input>x<sup>2</sup>+<input>x+<input>=0 <hr>
+    <button onclick="solve()">Rozwiąż</button>
+    <div></div>
+    <script>
+    function solve(){
+            let inp=document.getElementsByTagName("input");
+            let a=+inp[0].value, b=+inp[1].value, c=+inp[2].value;
+            let delta=b*b-4*a*c;
+            if(delta<0)
+                document.getElementsByTagName("div")[0].innerHTML="Brak rozwiązań";
+            else if(delta == 0){
+                let x0=(-b)/(2*a);
+                document.getElementsByTagName("div")[0].innerHTML="x0="+x0;
+            } else{
+                let x1=(-b-Math.sqrt(delta))/(2*a);
+                let x2=(-b+Math.sqrt(delta))/(2*a);
+                document.getElementsByTagName("div")[0].innerHTML="x1="+x1+"<br>x2="+x2;
+            }
+        }
+    </script>
+    <p>
+        1. linia - przypisuje do zmiennej listę elementów input z dokumentu html.<br>
+        2. linia - przypisuje do zmiennych a,b,c wartości z elemntów input. <br>
+        3. linia - oblicza deltę równania kwadratowego i przypisuje ją do zmiennej delta. <br>
+        Linie 4-5. - sprawdza czy delta jest mniejsza od zera i jeśli tak do elementu div wpisuje "Brak rozwiązań". <br>
+        Linie 6-8. - jeśli delta jest równa 0, obliczana jest wartość miejsca zerowego funkcji i jest ona wypisywana do elementu div. <br>
+        Linie 9-12. - w innym wypadku, czyli kiedy delta jest większa od 0, obliczane i wypisywane do elementu div zostają 2 pierwiastki równania.
+    </p>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 9</title>
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 14pt;
+        }
+
+        h1 {
+            font-size: 35pt;
+            text-align: center;
+        }
+
+        input, button {
+            display: block;
+            margin: 0 auto;
+        }
+
+        #wynik {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Kalkulator JS</h1>
+    <p>
+        Kalkulator po zmianie wartości znacznika input wypisuje działanie, które wpisaliśmy oraz jego wynik.
+        Działania są obliczane z pomocą JavaScript'a. Oznacza to, że aby wykonać działanie potęgowania lub pierwiastka kwadratowego
+        musimy użyć instrukcji JS'a, czyli odpowiednio np. "Math.pow(3,2)" i "Math.sqrt(9)".
+        Jeśli instrukcje nie będą poprawne, po naciśnięciu Enter nic się nie stanie.
+        Po naciśnięciu przycisku "Wyczyść" cała historia działań zostanie usunięta.
+    </p>
+    <input onchange="document.getElementById('wynik').innerHTML += '<br>'+this.value+' = '+eval(this.value); this.value='';">
+    <br><button onclick="location = location">Wyczyść</button>
+    <div id="wynik"></div>
+</body>
+</html>

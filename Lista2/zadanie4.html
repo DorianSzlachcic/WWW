@@ -10,6 +10,7 @@
 
         table.A, table.A th, table.A td{
             border: 1px solid violet;
+            font-family: Arial;
         }
 
         table.A th:nth-child(2){
@@ -18,8 +19,31 @@
             color: blue;
         }  
 
+        table.A tr:nth-child(2n) td {
+            background-color: brown;
+        }
+
+        table.A tr td {
+            text-align: center;
+        }
+
         table.B, table.B th, table.B td{
-            border: 5px solid green;
+            border: 5px solid lightblue;
+            font-family: 'Times New Roman';
+        }
+
+        table.B tr:nth-child(2n-1) {
+            background-color: green;
+            text-align: right;
+        }
+
+        table.B tr:nth-child(2n) {
+            background-color: orange;
+        }
+
+        table.B th {
+            font-weight: lighter;
+            color: red;
         }
     </style>
 </head>
