@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 2D</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 2px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="ramka"></div>
+    <button onclick="wypisz(imiona)">Imiona</button>
+    <button onclick="wypisz(liczby)">Liczby</button>
+    <script>
+        var imiona = ["ola","ala","Ela"];
+        var liczby = [2,3,5,7,10,12,23];
+        function wypisz(tab) {
+            var ramka = document.getElementById("ramka"), s="<table>";
+            for(let x of tab)
+                s+= "<tr><td>"+x+"</td></tr>";
+            ramka.innerHTML = s + "</table>";
+        }
+    </script>
+</body>
+</html>

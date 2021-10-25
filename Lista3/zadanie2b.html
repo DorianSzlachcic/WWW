@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 2B</title>
+</head>
+<body>
+    <div id="ramka"></div>
+    <button onclick="wypisz(imiona)">Imiona</button>
+    <button onclick="wypisz(liczby)">Liczby</button>
+    <script>
+        var imiona = ["ola","ala","Ela"];
+        var liczby = [2,3,5,7,10,12,23];
+        function wypisz(tab) {
+            var ramka = document.getElementById("ramka"), s="<ul>";
+            for(let x of tab)
+                s+= "<li>"+x+"</li>";
+            ramka.innerHTML = s + "</ul>";
+        }
+    </script>
+</body>
+</html>

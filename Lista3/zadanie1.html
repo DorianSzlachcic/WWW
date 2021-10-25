@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 1</title>
+    <style>
+        p {
+            background-color: pink;
+            border: 2px solid green;
+        }
+    </style>
+</head>
+<body>
+    <p onclick="funkcja()">Jeszcze nie kliknięty</p>
+    <script>
+        let x = 0;
+        function funkcja(){
+            x++;
+            document.body.querySelector("p").innerHTML = "Kliknięty po raz " + x;
+        }
+    </script>
+</body>
+</html>
