@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 6</title>
+    <style>
+        table {border-collapse:collapse}
+        td, th {width:50px; height:50px; border:1px solid grey;}
+        th {background-color: #aaa;}
+        tr:nth-child(odd) td:nth-child(odd) {background:#ddd}
+        tr:nth-child(even) td:nth-child(even) {background:#ddd}
+    </style>
+</head>
+<body>
+    <table>
+        <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+
+    <button onclick="mnozenie()">Mnożenie</button>
+    <button onclick="dodawanie()">Dodawanie</button>
+    <button onclick="modulo()">Modulo</button>
+    <button onclick="zwiekszanie()">Zwiększanie</button>
+    <button onclick="sumy()">Sumy</button>
+    <button onclick="parzyste()">Parzyste</button>
+    <button onclick="szachy()">Szachy</button>
+    <button onclick="gumkuj()">Gumkuj</button>
+    <button onclick="liczby()">Liczby</button>
+
+
+    <script>
+    var tab=document.getElementsByTagName('table')[0];
+    for(let i=1;i<=10;i++){
+        tab.rows[0].cells[i].innerHTML=i;
+        tab.rows[i].cells[0].innerHTML=i;
+    }
+
+    function mnozenie() {
+        tab.rows[0].cells[0].innerHTML = "*";
+        for(let i=1;i<=10;i++) {
+            for(let j=1;j<=10;j++)
+                tab.rows[i].cells[j].innerHTML = i*j;
+        }
+    }
+    function dodawanie() {
+        tab.rows[0].cells[0].innerHTML = "+";
+        for(let i=1;i<=10;i++) {
+            for(let j=1;j<=10;j++)
+                tab.rows[i].cells[j].innerHTML = i+j;
+        }
+    }
+    function modulo() {
+        tab.rows[0].cells[0].innerHTML = "%";
+        for(let i=1;i<=10;i++) {
+            for(let j=1;j<=10;j++)
+                tab.rows[i].cells[j].innerHTML = i%j;
+        }
+    }
+    function zwiekszanie() {
+        for(let i=1;i<=10;i++) {
+            for(let j=1;j<=10;j++)
+                tab.rows[i].cells[j].innerHTML = +tab.rows[i].cells[j].innerHTML + 1;
+        }
+    }
+    function sumy() {
+        for(let i=1;i<=10;i++) {
+            var sum = 0;
+            for(let j=1;j<=10;j++)
+                sum += +tab.rows[i].cells[j].innerHTML;
+            tab.rows[i].cells[0].innerHTML = sum;
+
+            sum = 0;
+            for(let j=1;j<=10;j++)
+                sum += +tab.rows[j].cells[i].innerHTML;
+            tab.rows[0].cells[i].innerHTML = sum;
+        }
+    }
+    function parzyste() {
+        for(let i=1;i<=10;i++) {
+            for(let j=1;j<=10;j++) {
+                var number = +tab.rows[i].cells[j].innerHTML;
+                if(number%2==0)
+                    tab.rows[i].cells[j].style.backgroundColor = 'green';
+                else
+                    tab.rows[i].cells[j].style.backgroundColor = 'yellow';
+            }
+        }
+    }
+    function szachy() {
+        for(let i=1;i<=10;i++) {
+            for(let j=1;j<=10;j++)
+                tab.rows[i].cells[j].style.backgroundColor = null;
+        }
+    }
+    function gumkuj() {
+        for(let i=1;i<=10;i++) {
+            for(let j=1;j<=10;j++)
+                tab.rows[i].cells[j].innerHTML = "";
+        }
+    }
+    function liczby() {
+        var number = 1;
+        for(let i=1;i<=10;i++) {
+            for(let j=1;j<=10;j++) {
+                tab.rows[i].cells[j].innerHTML = number;
+                number++;
+            }
+        }
+    }
+
+
+    </script>
+
+    <p>Po dodaniu linijek <br>"table {border-collapse:collapse}<br>
+    td {width:50px; height:50px; border:1px solid grey;}"<br>
+    pojwia się obramowanie tabelki.</p>
+    <p>Po dodaniu linijki "tr:nth-child(odd) td:nth-child(odd) {background:#ddd}"<br>
+    kolor zmieniły nieparzyste komórki w nieparzystych rzędach.</p>
+    <p>Po dodaniu linijki "tr:nth-child(even) td:nth-child(even) {background:#ddd}"<br>
+    kolor zmieniły parzyste komórki w parzystych rzędach.</p>
+
+    <a href="zadanie10.html">Powrót do menu</a><br/>
+</body>
+</html>

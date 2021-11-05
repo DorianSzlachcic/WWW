@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 5</title>
+    <style>
+        p:nth-child(5n) {
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <p>Uno</p>
+    <p>Due</p>
+    <p>Tre</p>
+    <p>Quattro</p>
+    <p>Cinque</p>
+    <p>Sei</p>
+    <p>Sette</p>
+    <p>Otto</p>
+    <p>Nove</p>
+    <p>Dieci</p>
+    <p>Undici</p>
+    <p>Dodici</p>
+    <p>Tredici</p>
+    <p>Quattordici</p>
+    <p>Quindici</p>
+    <button onclick="clearFormating()">OK</button>
+    <button onclick="pinkAndBlue()">Niebieski na różowym</button>
+    <button onclick="duplicate15()">Duplikacja 15 paragrafu</button>
+    <button onclick="addNParagraf()">Dodaj N-tego paragrafu</button>
+
+    <script>
+        var liczbaParagrafow = 15;
+
+        function clearFormating() {
+            var p = document.querySelectorAll('p');
+            for(var i=0;i<p.length;i++) {
+                p[i].style.color = "black";
+                p[i].style.backgroundColor = "white";
+            }
+        }
+
+        function pinkAndBlue() {
+            var p = document.querySelectorAll('p');
+            for(var i=2;i<p.length;i+=3) {
+                p[i].style.color = "blue";
+                p[i].style.backgroundColor = "pink";
+            }
+        }
+
+        function duplicate15() {
+            var p = document.querySelectorAll('p');
+            document.body.innerHTML += '<p>'+p[liczbaParagrafow-15].innerHTML+'</p>';
+            liczbaParagrafow++;
+        }
+
+        function addNParagraf() {
+            var p = document.querySelectorAll('p');
+            liczbaParagrafow++;
+            document.body.innerHTML += '<p>Numer tego paragrafu to '+liczbaParagrafow+'</p>';
+        }
+    </script>
+</body>
+</html>
