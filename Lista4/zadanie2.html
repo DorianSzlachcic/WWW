@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 2</title>
+    <style>
+        img:first-of-type {display: inline;}
+        img {vertical-align: middle; height: 400px; display: none;}
+        body {text-align: center;}
+    </style>
+</head>
+<body>
+    <button onclick="f(-1)"> << </button>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <button onclick="f(1)"> >> </button>
+    <script>
+        var i=0;
+        var images=document.getElementsByTagName("img");
+        function f(x){
+            images[i].style.display="none";
+            i=i+x;
+            if(i>9)
+                i = 0;
+            if(i<0)
+                i = 9;
+            images[i].style.display = "inline";
+        }
+
+        function next(){
+            f(1);
+        }
+
+        setInterval(next,1000);
+    </script>
+</body>
+</html>

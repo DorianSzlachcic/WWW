@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 1B</title>
+    <style>
+        img {vertical-align: middle; height: 400px;}
+        body {text-align: center;}
+    </style>
+</head>
+<body>
+    <button onclick="f(-1)"> << </button>
+    <img src="https://d-art.ppstatic.pl/kadry/k/r/1/e2/a5/5bb236c9b5639_o_full.jpg">
+    <button onclick="f(1)"> >> </button>
+    <script>
+        var i=0;
+        var img=document.getElementsByTagName("img")[0];
+        var adr = ["https://d-art.ppstatic.pl/kadry/k/r/1/e2/a5/5bb236c9b5639_o_full.jpg",
+        "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.uWvxT6GPoIyiwW6Io0_zqAHaFn%26pid%3DApi&f=1",
+        "http://martazynel-fotografia.pl/wp-content/uploads/2016/04/kr-9.jpg",
+        "https://fairyhorses.pl/wp-content/uploads/2018/03/IMG_0855-1024x683.jpg",
+        "https://d-pt.ppstatic.pl/kadry/k/r/1/a9/75/5bfd5ecfa5c83_o.jpg?1543426890",
+        "https://i.wpimg.pl/O/1200x0/m.fotoblogia.pl/zrzut-ekranu-2017-05-26--7ca9737.png",
+        "https://www.national-geographic.pl/media/cache/gallery_view/uploads/media/default/0010/19/47885b1e22317683574e46846874be6d6bb445e5.jpeg",
+        "https://cdn.ebs.newsner.com/wp-content/uploads/sites/14/2019/08/isbjorn.jpg",
+        "http://wojciechbalczewski.pl/wp-content/uploads/2016/11/wloclawek.jpg",
+        "https://www.globtroter.pl/zdjecia/polska/251511_polska_podkarpackie_jeziorko.jpg"]
+        function f(x){
+            i=i+x;
+            if(i>adr.length-1)
+                i = 0;
+            if(i<0)
+                i = adr.length-1;
+            img.src=adr[i];
+        }
+    </script>
+</body>
+</html>
