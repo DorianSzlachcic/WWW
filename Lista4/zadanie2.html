@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Zadanie 2</title>
     <style>
-        img:first-of-type {display: inline;}
-        img {vertical-align: middle; height: 400px; display: none;}
+        p:first-of-type {display: inline;}
+        p {vertical-align: middle; height: 400px; display: none;}
         body {text-align: center;}
     </style>
 </head>
@@ -24,15 +24,15 @@
     <button onclick="f(1)"> >> </button>
     <script>
         var i=0;
-        var images=document.getElementsByTagName("img");
+        var paragraphs=document.getElementsByTagName("p");
         function f(x){
-            images[i].style.display="none";
+            paragraphs[i].style.display="none";
             i=i+x;
             if(i>9)
                 i = 0;
             if(i<0)
                 i = 9;
-            images[i].style.display = "inline";
+            paragraphs[i].style.display = "inline";
         }
 
         function next(){
