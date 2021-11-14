@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 3A</title>
+    <style>
+        h1 {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <script>
+        function updateTime(){
+            const d = new Date();
+            document.querySelector("h1").innerHTML = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds();
+        }
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>

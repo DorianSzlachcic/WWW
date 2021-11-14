@@ -11,35 +11,79 @@
 </head>
 <body>
     <button onclick="f(-1)"> << </button>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
-    <p></p>
+    <p>C++ – język programowania ogólnego przeznaczenia. 
+        Język został zaprojektowany przez Bjarne Stroustrupa jako rozszerzenie języka 
+        C o obiektowe mechanizmy abstrakcji danych i silną statyczną kontrolę typów. 
+        Zachowanie zgodności z językiem C na poziomie kodu źródłowego pozostaje jednym z 
+        podstawowych celów projektowych kolejnych standardów języka. </p>
+    <p>Python – język programowania wysokiego poziomu ogólnego przeznaczenia, 
+        o rozbudowanym pakiecie bibliotek standardowych, którego ideą przewodnią jest czytelność 
+        i klarowność kodu źródłowego. Jego składnia cechuje się przejrzystością i zwięzłością. </p>
+    <p>Java – współbieżny, oparty na klasach, obiektowy język programowania ogólnego 
+        zastosowania. Został stworzony przez grupę roboczą pod kierunkiem Jamesa Goslinga z 
+        firmy Sun Microsystems. Java jest językiem tworzenia programów źródłowych kompilowanych 
+        do kodu bajtowego, czyli postaci wykonywanej przez maszynę wirtualną. Język cechuje się 
+        silnym typowaniem. Jego podstawowe koncepcje zostały przejęte z języka Smalltalk (maszyna 
+        wirtualna, zarządzanie pamięcią) oraz z języka C++ (duża część składni i słów kluczowych). </p>
+    <p>PHP – interpretowany, skryptowy język programowania zaprojektowany do generowania 
+        stron internetowych i budowania aplikacji webowych w czasie rzeczywistym. 
+        PHP jest najczęściej stosowany do tworzenia skryptów po stronie serwera WWW, 
+        ale może być on również używany do przetwarzania danych z poziomu wiersza poleceń, 
+        a nawet do pisania programów pracujących w trybie graficznym (np. za pomocą biblioteki 
+        GTK+, używając rozszerzenia PHP-GTK). Implementacja PHP wraz z serwerem WWW Apache oraz 
+        serwerem baz danych MySQL określana jest jako platforma AMP (w środowisku Linux – LAMP, w 
+        Windows – WAMP). </p>
+    <p>Swift – język programowania stosowany na urządzeniach z systemami macOS, iOS, iPadOS, watchOS, 
+        tvOS, Linux oraz Windows (wersja 5.3), stworzony przez Apple Inc. 
+        Język jest następcą Objective-C. Swift zaprojektowany został do współpracy z 
+        frameworkami Cocoa, Cocoa Touch oraz rozległą bazą kodu napisanego w Objective-C na 
+        potrzeby produktów Apple. Jest on zbudowany w oparciu o otwartoźródłowy kompilator LLVM i 
+        jest dołączany do środowiska programistycznego Xcode od wersji 6. </p>
+    <p>HTML – hipertekstowy język znaczników, wykorzystywany do tworzenia dokumentów hipertekstowych. 
+        HTML pozwala opisać strukturę informacji zawartych wewnątrz strony internetowej, 
+        nadając odpowiednie znaczenie semantyczne poszczególnym fragmentom tekstu – formując 
+        hiperłącza, akapity, nagłówki, listy – oraz osadza w tekście dokumentu obiekty plikowe 
+        np. multimedia bądź elementy baz danych np. interaktywne formularze danych.</p>
+    <p>JavaScript – skryptowy język programowania, stworzony przez firmę Netscape, 
+        najczęściej stosowany na stronach internetowych. Najczęściej spotykanym zastosowaniem 
+        języka JavaScript są strony internetowe. Skrypty te służą najczęściej do 
+        zapewnienia interakcji poprzez reagowanie na zdarzenia, walidacji danych 
+        wprowadzanych w formularzach lub tworzenia złożonych efektów wizualnych.</p>
+    <p>FORTRAN – język programowania pierwotnie zaprojektowany do zapisu 
+        programów obliczeniowych, był niegdyś językiem proceduralnym, 
+        obecnie jest nadal rozwijanym językiem ogólnego przeznaczenia. Umożliwia 
+        programowanie strukturalne, obiektowe (Fortran 90/95), modularne i 
+        równoległe (Fortran 2008).</p>
+    <p>Kotlin – statycznie typowany język programowania działający na maszynie wirtualnej 
+        Javy, który jest głównie rozwijany przez programistów JetBrains. Nazwa języka pochodzi 
+        od wyspy Kotlin niedaleko Petersburga. Kotlin jest zaprojektowany z myślą o pełnej 
+        interoperacyjności z językami działającymi na maszynie wirtualnej Javy. </p>
+    <p>Asembler - termin informatyczny związany z programowaniem i tworzeniem kodu maszynowego dla procesorów. 
+        W języku polskim oznacza on program tworzący kod maszynowy na podstawie kodu źródłowego 
+        (tzw. asemblacja) wykonanego w niskopoziomowym języku programowania bazującym na 
+        podstawowych operacjach procesora zwanym językiem asemblera, popularnie nazywanym 
+        również asemblerem. W tym artykule język programowania nazywany będzie językiem 
+        asemblera, a program tłumaczący – asemblerem. </p>
     <button onclick="f(1)"> >> </button>
+    <button onclick="intervalID = setInterval(next,7000);"> Start </button>
+    <button onclick="clearInterval(intervalID)"> Stop </button>
     <script>
         var i=0;
         var paragraphs=document.getElementsByTagName("p");
         function f(x){
             paragraphs[i].style.display="none";
             i=i+x;
-            if(i>9)
+            if(i>paragraphs.length)
                 i = 0;
             if(i<0)
-                i = 9;
+                i = paragraphs.length;
             paragraphs[i].style.display = "inline";
         }
 
         function next(){
             f(1);
         }
-
-        setInterval(next,1000);
+        var intervalID = setInterval(next,7000);
     </script>
 </body>
 </html>
