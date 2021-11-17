@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<style>
+    body{font-family: Arial;}
+    #ramka {height:700px;width:700px; border:1px solid grey;margin:auto;position:relative}
+    b {display:block;height:10px;width:10px;position:absolute;text-align:center;}
+    h1,div {text-align:center;margin:10px}
+    img {height: 30px; width: 30px;}
+    p {text-align: center;font-size: 30pt;}
+</style>
+</head>
+<body>
+
+<h1>Samoloty</h1>
+<div id='ramka'></div>
+
+<div>
+    <button onclick="run=false"> Stop </button>
+    <button onclick="startGame()"> Nowa Gra </button>
+    <button onclick="level = 0; startGame()">Poziom 0</button>
+    <button onclick="level = 1;startGame()">Poziom 1</button>
+    <button onclick="level = 2;startGame()">Poziom 2</button>
+    <button onclick="level = 3;startGame()">Poziom 3</button>
+    <button onclick="level = 4;startGame()">Poziom 4</button>
+</div>
+
+<p id="gameInfo"></p>
+
+
+<script>
+    var balls=document.getElementsByTagName('B');
+    var ramka = document.getElementById("ramka");
+    var gameInfo = document.getElementById("gameInfo");
+    var timeoutID = 0;
+    var numberOfBalls = [10,20,30,50,50];
+    var speedOfBalls = [30,40,20,40,20];
+    var currentNumberOfBalls = 0;
+    var level = 0;
+    var timeInSec = 0.0;
+    var run = true;
+    
+    startGame();
+
+    function startGame(){
+        if(timeoutID!=0)
+            clearTimeout(timeoutID);
+        timeInSec = 0.0;
+        run = true;        
+        ramka.innerHTML = "";
+
+        for(let i=0;i<numberOfBalls[level];i++)
+		    ramka.innerHTML += "<b><img src='img/airplane.png'></b>";
+
+        for(ball of balls)
+        {
+            ball.x=Math.random()*640+30;
+            ball.y=Math.random()*640+30;
+
+            ball.vx=Math.random()*20-10;
+            ball.vy=Math.random()*20-10;
+            
+            ball.style.left=ball.x+"px";
+            ball.style.top =ball.y+"px";
+            ball.style.transform="rotate("+(Math.atan2(ball.vy,ball.vx)+Math.PI/2)+"rad)";
+            
+            ball.onmousedown=stop;
+        }
+        currentNumberOfBalls = numberOfBalls[level];
+
+        update();
+    }
+
+    function update()
+    {
+        for(let ball of balls)
+        {
+            ball.x+=ball.vx;
+            ball.y+=ball.vy;
+            
+            if(ball.x>670 || ball.x<30)  ball.vx*=-1;
+            if(ball.y>670 || ball.y<30)  ball.vy*=-1;
+            
+            ball.style.left=ball.x+"px";
+            ball.style.top =ball.y+"px";
+            ball.style.transform="rotate("+(Math.atan2(ball.vy,ball.vx)+Math.PI/2)+"rad)";
+        }
+        if(currentNumberOfBalls>0)
+            gameInfo.innerHTML = currentNumberOfBalls + " balls left";
+        else{
+            gameInfo.innerHTML = "Mission  completed  in " + Number.parseFloat(timeInSec).toFixed(2) + "s";
+            run = false;
+        }
+
+        if(run){
+            timeInSec += speedOfBalls[level]/1000;
+            timeoutID = setTimeout(update,speedOfBalls[level]);
+        }
+    }
+    
+    function stop()
+    {
+        this.vx=0;
+        this.vy=0;
+        this.style.display = "none";
+        currentNumberOfBalls--;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 4</title>
+    <style>
+        input {
+            width: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td rowspan=2 style='font-size:3em'>{</td>
+            <td><input>x+<input>y=<input></td>
+        </tr>
+        <tr>
+            <td><input>x+<input>y=<input></td>
+        </tr>
+    </table>
+    <button onclick="solve()">Rozwiąż</button>
+    <div id='wynik'></div>
+
+    <script>
+        inputs = document.querySelectorAll("input");
+        wynik = document.getElementById("wynik");
+
+        function solve() {
+            a1 = inputs[0].value;
+            b1 = inputs[1].value;
+            c1 = inputs[2].value;
+            a2 = inputs[3].value;
+            b2 = inputs[4].value;
+            c2 = inputs[5].value;
+
+            W = a1 * b2 - b1 * a2;
+            Wx = c1 * b2 - b1 * c2;
+            Wy = a1 * c2 - c1 * a2;
+            if (W == 0) {
+                if (Wx == 0 && Wy == 0) {
+                    wynik.innerHTML = "Równanie ma nieskończenie wiele rozwiązań"
+                } else {
+                    wynik.innerHTML = "Równanie sprzeczne"
+                }
+            } else {
+                x = Wx / W;
+                y = Wy / W;
+                wynik.innerHTML = "x = " + x + "<br>y = " + y;
+            }
+        }
+    </script>
+</body>
+
+</html>
