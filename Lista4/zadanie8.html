@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 8</title>
+</head>
+<body>
+    <div id="lista"></div>
+    <button onclick="wszyscy()">Wszyscy</button>
+    <button onclick="pokaz('fizyka')">Fizyka</button>
+    <button onclick="pokaz('chemia')">Chemia</button>
+    <script>
+        var student=[ {imie:"Ola",nazwisko:"Lis",kierunek:"fizyka",wzrost:170},
+        {imie:"Ala",nazwisko:"Góral",kierunek:"chemia",wzrost:165},
+        {imie:"Adam",nazwisko:"Kowalski",kierunek:"fizyka",wzrost:152},
+        {imie:"Dominika",nazwisko:"Lato",kierunek:"chemia",wzrost:172},
+        {imie:"Błażej",nazwisko:"Duży",kierunek:"chemia",wzrost:192},
+        {imie:"Adrian",nazwisko:"Skowyrski",kierunek:"fizyka",wzrost:167},
+        {imie:"Jan",nazwisko:"Nowak",kierunek:"fizyka",wzrost:180}];
+
+        var lista = document.getElementById("lista");
+        function wszyscy(){
+            s = "<h2>Studenci</h2><ol>";
+            for(t of student){
+                if(t.kierunek == "chemia"){
+                    s += "<li style='background:red;width:"+(t.wzrost/200)*100+"% '>"+t.imie+" "+t.nazwisko+" ("+t.kierunek+")</li>";
+                }
+                else if(t.kierunek == "fizyka"){
+                    s += "<li style='background:green;width:"+(t.wzrost/200)*100+"% '>"+t.imie+" "+t.nazwisko+" ("+t.kierunek+")</li>";
+                }
+            }
+            s+="</ol>"
+            lista.innerHTML = s;
+        }
+
+        function pokaz(kierunek){
+            s = "<h2>"+kierunek+"</h2><ol>";
+            for(t of student){
+                if(t.kierunek == kierunek){
+                    if(t.kierunek == "chemia"){
+                        s += "<li style='background:red;width:"+(t.wzrost/200)*100+"% '>"+t.imie+" "+t.nazwisko+"</li>";
+                    }
+                    else if(t.kierunek == "fizyka"){
+                        s += "<li style='background:green;width:"+(t.wzrost/200)*100+"% '>"+t.imie+" "+t.nazwisko+"</li>";
+                    }
+                }
+            } 
+            lista.innerHTML = s;
+        }
+    </script>
+</body>
+</html>

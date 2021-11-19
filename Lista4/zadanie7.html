@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 7</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        table, table td{
+            border: 3px solid black;
+        }
+
+        table td{
+            width: 50px;
+            height: 50px;
+        }
+
+        div{
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+
+        #green{
+            background: green;
+        }
+        #red{
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <h2>Zielony : Czerwony</h2>
+    <table>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>
+    <button onclick="nowaGra()">Nowa Gra</button>
+
+    <script>
+        var rows = document.getElementsByTagName("tr");
+        var scoreBoard = document.getElementsByTagName("h1")[0];
+        var greenTurn = true;
+        var timeoutID = 0;
+
+        var greenBall = "<div id='green'></div>";
+        var greenX = 0;
+        var greenY = 0;
+        var greenScore = 0;
+
+        var redBall = "<div id='red'></div>";
+        var redX = 0;
+        var redY = 0;
+        var redScore = 0;
+
+        function start(){
+            greenX = Math.floor(Math.random()*10);
+            greenY = Math.floor(Math.random()*10);
+            redX = Math.floor(Math.random()*10);
+            redY = Math.floor(Math.random()*10);
+
+            rows[greenY].getElementsByTagName("td")[greenX].innerHTML = greenBall;
+            rows[redY].getElementsByTagName("td")[redX].innerHTML = redBall;
+
+            scoreBoard.innerHTML = greenScore + ":" + redScore;
+
+            update();
+        }
+        
+        function update(){
+            //Remove balls from actual position
+            if(greenTurn) {
+                    rows[greenY].getElementsByTagName("td")[greenX].innerHTML = "";
+
+                do{
+                    do{
+                        x = Math.floor(Math.random()*3)-1;
+                    } while((greenX==9 && x ==1) || (greenX==0 && x == -1))
+
+                    do{
+                        y = Math.floor(Math.random()*3)-1;
+                    } while((greenY==9 && y ==1) || (greenY==0 && y == -1))
+                } while(x==0 && y==0);
+                    
+                greenX += x;
+                greenY += y;
+                rows[greenY].getElementsByTagName("td")[greenX].innerHTML = greenBall;
+
+                greenTurn = false;
+
+                if(redX == greenX && redY == greenY)
+                    win("green");
+
+            } else {
+                    rows[redY].getElementsByTagName("td")[redX].innerHTML = "";
+
+                do{
+                    do{
+                        x = Math.floor(Math.random()*3)-1;
+                    } while((redX==9 && x ==1) || (redX==0 && x == -1))
+
+                    do{
+                        y = Math.floor(Math.random()*3)-1;
+                    } while((redY==9 && y ==1) || (redY==0 && y == -1))
+                } while(x==0 && y==0);
+
+                redX += x;
+                redY += y;
+                rows[redY].getElementsByTagName("td")[redX].innerHTML = redBall;
+                greenTurn = true;
+
+                if(redX == greenX && redY == greenY)
+                    win("red");
+            }
+
+            timeoutID = setTimeout(update, 100);
+        }
+
+        function win(winner){
+
+            rows[greenY].getElementsByTagName("td")[greenX].innerHTML = "";
+            rows[redY].getElementsByTagName("td")[redX].innerHTML = "";
+            clearTimeout(timeoutID);
+
+            if(winner=="red"){
+                redScore += 1;
+            } else{
+                greenScore +=1;
+            }
+            start();
+        }
+
+        function nowaGra(){
+            rows[greenY].getElementsByTagName("td")[greenX].innerHTML = "";
+            rows[redY].getElementsByTagName("td")[redX].innerHTML = "";
+            clearTimeout(timeoutID);
+            redScore = 0;
+            greenScore = 0;
+
+            start();
+        }
+
+        start();
+    </script>
+</body>
+</html>
