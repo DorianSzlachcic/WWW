@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+<style>
+.menu1 a {font-size: 20px}
+.menu1 a {text-decoration:none;}
+.menu1 a {font-family: arial;display:block;background:#eee;
+	       padding:4px 20px;margin:2px;}
+.menu1 li li a {color:black}
+.menu1  li:hover> a {background:#aaa;}
+.menu1 > li {display:table-cell; padding:0; border:1px solid grey}
+.menu1 >li >a {background:#678; color:white;margin:2px;}
+.menu1 >li:hover >a {background:#456; }
+.menu1 ul {list-style-type:none} 
+.menu1 ul {padding:0} 
+.menu1 li ul {position:absolute;border:1px solid grey;background:#eee}
+.menu1 li ul {display:none}
+.menu1 li:hover ul {display:block}
+.menu1 >li {display:table-cell;padding:0;border:none}
+</style>
+</head>
+<html>
+<body>
+<div>
+<ul class="menu1">
+    <li><a href=#>Ludzie</a>
+      <ul>
+        <li><a href=#>Einstein</a></li>
+        <li><a href=#>Feynman</a></li>
+        <li><a href=#>Chopin</a></li>
+       </ul>
+    </li>
+    <li><a href=#>Figury</a>
+      <ul>
+        <li><a href=#>Kwadrat</a></li>
+        <li><a href=#>Koło</a></li>
+        <li><a href=#>Trójkąt</a></li>
+      </ul>
+    </li>
+    <li><a href=#>Miasta</a>
+      <ul>
+        <li><a href=#>Wrocław</a></li>
+        <li><a href=#>Kraków</a></li>
+        <li><a href=#>Poznań</a></li>
+      </ul>
+    </li>
+    <li><a href=#>Ryby</a>
+      <ul>
+        <li><a href=#>Dorsz</a></li>
+        <li><a href=#>Śledź</a></li>
+        <li><a href=https://www.google.com/search?q=sum&safe=off&sxsrf=ACYBGNStBx1XifrjSJjkVSxcuw7howkHZg:1571902401513&tbm=isch&source=iu&ictx=1&fir=_849prHuMrJANM%253A%252C2OmVrjYk1nysHM%252C_&vet=1&usg=AI4_-kS3HK_RsvRYl_JowtTnW4S7-zKw5w&sa=X&ved=2ahUKEwiV143isLTlAhXGi1wKHcNMBdwQ9QEwAXoECAgQBg#imgrc=u5FSx6uzgHzDmM:&vet=1>Sum</a></li>
+      </ul>
+    </li>
+</ul>
+<dl>
+  <dt>.menu1 a {font-size: 20px}</dt>
+  <dd>Ustawia wielkość czcionki wszystkich elementów a z listy o klasie menu1</dd>
+  <dt>.menu1 a {text-decoration:none;}</dt>
+  <dd>Czyści wszystkie dekoracje elementów a z listy menu1 (kolor czcionki będzie taki jak w body, nie będzie podkreślenia po nakierowaniu myszką na link itp.)</dd>
+  <dt>.menu1 a {font-family: arial;display:block;background:#eee;
+    padding:4px 20px;margin:2px;}</dt>
+  <dd>Elementy a z listy menu1 będą miały zmienioną czcionkę na Arial, kolor tła na #eee, margines wewnętrzy o wielkości 4 px od góry i z dołu oraz o wielkości 20px z lewej i prawej, 
+    margines zewnętrzny będzie miał wielkość 2 px, element a będzie się wyświetlał jako element blokowy.
+  </dd>
+  <dt>.menu1 li li a {color:black}</dt>
+  <dd>Zmienia kolor czcionki każdego elementu a, który znajduje się w elemencie li znajdującego się w elemencie li listy o klasie menu1</dd>
+  <dt>.menu1  li:hover> a {background:#aaa;}</dt>
+  <dd>Po nakierowaniu myszką na element li listy menu1 każdy element a zmienia kolor tła na #aaa.</dd>
+  <dt>.menu1 > li {display:table-cell; padding:0; border:1px solid grey}  </dt>
+  <dd>Elementy li, których bezpośrednim rodzicem jest lista menu1 zostają wyświetlane jako komórki tabeli, usuwany jest margines wewnętrzny oraz dodawana jest ramka o szerokości 1 px i kolorze szarym.</dd>
+  <dt>.menu1 >li >a {background:#678; color:white;margin:2px;}  </dt>
+  <dd>Elementy a, których bezpośrednim rodzicem jest element li, którego bezpośrednim rodzicem jest menu1,będą miały kolor tła #678, kolor czcionki biały oraz margines zewnątrzny 2 px.</dd>
+  <dt>.menu1 >li:hover >a {background:#456; }  </dt>
+  <dd>Po nakierowaniu myszką na element li listy menu1 każdy element a zmienia kolor tła na #456.</dd>
+  <dt>.menu1 ul {list-style-type:none}  </dt>
+  <dd>Wszystkie listy znajdujące się w listcie menu1 nie będą miały kropek lub innych znaków przy elementach li</dd>
+  <dt>.menu1 ul {padding:0}</dt>
+  <dd>Wszystkie listy znajdujące się w listcie menu1 nie będą miały marginesu wewnętrznego</dd>
+  <dt>.menu1 li ul {position:absolute;border:1px solid grey;background:#eee;}</dt>
+  <dd>Wszystkie listy znajdujące się w listcie menu1 będą mogły pojawiać się na dowolnym miejscu na stronie, będą posiadać ramkę o szerokości 1px i kolorze szarym oraz tło będzie koloru #eee</dd>
+  <dt>.menu1 li ul {display:none}  </dt>
+  <dd>Wszystkie listy znajdujące się w listcie menu1 będą niewidoczne</dd>
+  <dt>.menu1 li:hover ul {display:block}</dt>
+  <dd>Po nakierowaniu myszką na element li listy menu1 listy tam znajdujące się będą widoczne</dd>>
+</div>
+</body>
+</html>
