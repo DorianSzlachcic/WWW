@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 4</title>
+</head>
+<body>
+    <div id="ramka"></div>
+    <button onclick="wypiszStudentow()">Wypisz</button>
+    <button onclick="wypisz()">Policz</button>
+    <script>
+        var ramka = document.getElementById("ramka");
+        var student=[ {imie:"Ola",nazwisko:"Lis",kierunek:"fizyka",wzrost:170},
+        {imie:"Ala",nazwisko:"Góral",kierunek:"chemia",wzrost:165},
+        {imie:"Adam",nazwisko:"Kowalski",kierunek:"fizyka",wzrost:152},
+        {imie:"Dominika",nazwisko:"Lato",kierunek:"chemia",wzrost:172},
+        {imie:"Błażej",nazwisko:"Duży",kierunek:"chemia",wzrost:192},
+        {imie:"Adrian",nazwisko:"Skowyrski",kierunek:"fizyka",wzrost:167},
+        {imie:"Jan",nazwisko:"Nowak",kierunek:"fizyka",wzrost:180}];
+
+
+        function policz(s){
+
+            return odp;
+        }
+
+        function wypiszStudentow(){
+            s = "<ol>";
+            for(let t of student){
+                for(let k of Object.keys(t)){}
+                s += "<li>"+t.imie+" "+t.nazwisko+" ("+t.kierunek+")</li>";
+            }
+            s+="</ol>"
+            ramka.innerHTML = s;
+        }
+
+        function wypisz(ile){
+
+        }
+    </script>
+</body>
+</html>
