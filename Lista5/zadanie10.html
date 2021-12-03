@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 10</title>
+    <style>
+        form{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="rys" width="600" height="600"></canvas>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button>
+
+    <form onsubmit="dodaj(this);return false;">
+        <label>X: </label><input type="number" name="x"><br>
+        <label>Y: </label><input type="number" name="y"><br>
+        <label>VX: </label><input type="number" name="vx"><br>
+        <label>VY: </label><input type="number" name="vy"><br>
+        <label>Height: </label><input type="number" name="height"><br>
+        <label>Element: </label><select name="rysuj">
+            <option value=balwan>Bałwan</option>
+            <option value=domek>Domek</option>
+            <option value=choinka>Choinka</option>
+        </select><br>
+        <input type="submit" value="Dodaj">
+    </form>
+    <div id="usuwanie"></div>
+    <script>
+        var canvas = document.getElementById("rys");
+        var clock = 0;
+        function domek(x,y,height){
+            if(canvas.getContext){
+                var ctx = canvas.getContext("2d");
+
+                var rectHeight = (height/3)*2;
+                var roofHeight = height/3;
+
+                ctx.fillStyle = "orange";
+                ctx.fillRect(x,y+roofHeight,rectHeight,rectHeight);
+
+                ctx.fillStyle = "lightblue";
+                ctx.fillRect(x+(rectHeight/5),y+roofHeight+(rectHeight/5),(rectHeight/5),(rectHeight/5));
+                ctx.fillRect(x+(rectHeight/5*3),y+roofHeight+(rectHeight/5),(rectHeight/5),(rectHeight/5));
+                
+                ctx.fillStyle = "brown";
+                ctx.fillRect(x+(rectHeight/5*2),y+roofHeight+(rectHeight/5*3),(rectHeight/5),(rectHeight/5*2));
+
+                ctx.beginPath();
+                ctx.moveTo(x,y+roofHeight);
+                ctx.lineTo(x+(rectHeight/2),y);
+                ctx.lineTo(x+rectHeight,y+roofHeight);
+                ctx.fillStyle = "red";
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        function balwan(x,y,height){
+            if(canvas.getContext){
+                var ctx = canvas.getContext("2d");                
+
+                x = x+(height/4);
+                ctx.strokeStyle = "lightblue";
+                ctx.fillStyle = "white";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(x,y+(height/12),height/12,0,Math.PI*2);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(x,y+(height/6*2),height/6,0,Math.PI*2);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(x,y+(height/12*9),height/6*1.5,0,Math.PI*2);
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
+
+        function choinka(x,y,height){
+            if(canvas.getContext){
+                var ctx = canvas.getContext("2d"); 
+                
+                ctx.fillStyle = "green";
+                ctx.beginPath();
+                ctx.moveTo(x+(height/4),y);
+                ctx.lineTo(x,y+(height/4));
+                ctx.lineTo(x+(height/2),y+(height/4));
+                ctx.lineTo(x+(height/4),y);
+                ctx.fill();
+                ctx.closePath();
+
+                y = y+(height/4);
+                ctx.beginPath();
+                ctx.moveTo(x+(height/4),y);
+                ctx.lineTo(x,y+(height/4));
+                ctx.lineTo(x+(height/2),y+(height/4));
+                ctx.lineTo(x+(height/4),y);
+                ctx.fill();
+                ctx.closePath();
+
+                y = y+(height/4);
+                ctx.beginPath();
+                ctx.moveTo(x+(height/4),y);
+                ctx.lineTo(x,y+(height/4));
+                ctx.lineTo(x+(height/2),y+(height/4));
+                ctx.lineTo(x+(height/4),y);
+                ctx.fill();
+                ctx.closePath();
+
+                ctx.fillStyle = "brown";
+                y = y+(height/4);
+                ctx.fillRect(x+(height/16*3),y,height/8,height/4);
+            }
+        }
+
+        var obiekty=[
+            {x:100, y:100, vx:0, vy:0, height:300, width:300, rysuj:domek},
+            {x:300, y:200, vx:0,vy:2, height: 200, width:100, rysuj:choinka},
+            {x:360, y:300, vx:-5, vy:0, height:100, width:50, rysuj:balwan},
+            {x:450, y:100, vx:0, vy:0, height:100, width:100, rysuj:domek},
+            {x:520, y:150, vx:0,vy:2, height: 50, width:25, rysuj:choinka},
+            {x:540, y:175, vx:3, vy:0, height:25, width:17.5, rysuj:balwan}
+            ];
+
+
+        function pokaz(obiekty){
+            if(canvas.getContext){
+                var ctx = canvas.getContext("2d"); 
+                
+                ctx.clearRect(0,0,600,600);
+                for(let o of obiekty)
+                    o.rysuj(o.x, o.y, o.height);
+            }
+        }
+
+        function dodaj(form){
+            console.log(form.rysuj.value);
+            if(form.rysuj.value == "domek"){
+                var o = {x:+form.x.value, y:+form.y.value, vx:+form.vx.value, vy:+form.vy.value, height:+form.height.value, width:+form.height.value, rysuj:domek};
+                obiekty.push(o);
+            } else if(form.rysuj.value == "choinka"){
+                var o = {x:+form.x.value, y:+form.y.value, vx:+form.vx.value, vy:+form.vy.value, height:+form.height.value, width:+form.height.value/2, rysuj:choinka};
+                obiekty.push(o);
+            }
+            else{
+                var o = {x:+form.x.value, y:+form.y.value, vx:+form.vx.value, vy:+form.vy.value, height:+form.height.value, width:+form.height.value/2, rysuj:balwan};
+                obiekty.push(o);
+            }
+            pokazButtonUsuwanie();
+            pokaz(obiekty);
+        }
+
+        function ruch(){
+            for(let o of obiekty) {
+                o.x+=o.vx; if(o.x<0 || o.x+o.width>600) o.vx*=-1;
+                o.y+=o.vy; if(o.y<0 || o.y+o.height>600) o.vy*=-1;
+            }
+            pokaz(obiekty);
+        }
+
+        function start(){
+            clock = setInterval(ruch,20);
+        }
+
+        function stop(){
+            clearInterval(clock);
+        }
+
+        function pokazButtonUsuwanie(){
+            var ramka = document.getElementById("usuwanie");
+            ramka.innerHTML = "";
+            for(let i =0;i<obiekty.length;i++){
+                ramka.innerHTML += "<button onclick='usuwanie("+i+")''>Usun "+i+"</button>";
+            }
+        }
+
+        function usuwanie(i){
+            obiekty.pop(obiekty[i]);
+            pokazButtonUsuwanie();
+            pokaz(obiekty);
+
+        }
+
+        pokazButtonUsuwanie();
+        pokaz(obiekty);
+</script>
+</body>
+</html>

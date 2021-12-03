@@ -7,7 +7,7 @@
 <body>
     <div id="ramka"></div>
     <button onclick="wypiszStudentow()">Wypisz</button>
-    <button onclick="wypisz()">Policz</button>
+    <button onclick="wypisz(policz(student))">Policz</button>
     <script>
         var ramka = document.getElementById("ramka");
         var student=[ {imie:"Ola",nazwisko:"Lis",kierunek:"fizyka",wzrost:170},
@@ -20,14 +20,21 @@
 
 
         function policz(s){
-
+            var odp = {};
+            odp[s[0].kierunek] = 1;
+            for(let i = 1; i<s.length;i++){
+                if(Object.keys(odp).includes(s[i].kierunek)){
+                    odp[s[i].kierunek]++;
+                }else{
+                    odp[s[i].kierunek]=1;
+                }
+            }
             return odp;
         }
 
         function wypiszStudentow(){
-            s = "<ol>";
+            var s = "<ol>";
             for(let t of student){
-                for(let k of Object.keys(t)){}
                 s += "<li>"+t.imie+" "+t.nazwisko+" ("+t.kierunek+")</li>";
             }
             s+="</ol>"
@@ -35,7 +42,13 @@
         }
 
         function wypisz(ile){
-
+            var k = Object.keys(ile);
+            var v = Object.values(ile);
+            var s = "<ul>"; 
+            for(let i = 0;i<k.length;i++){
+                s += "<li>"+k[i]+": "+v[i]+"</li>";
+            }
+            ramka.innerHTML = s + "</ul>";
         }
     </script>
 </body>

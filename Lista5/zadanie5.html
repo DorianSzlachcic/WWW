@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 5</title>
+    <style>
+        * {font-family:Arial, Sans}
+        h1,b {font-weight:normal;}
+        div {text-align:center}
+        div.wykres > div {
+                width:50px;
+                margin:15px;
+                box-shadow:10px 10px 5px grey;
+                border:1px solid grey;
+                display:inline-block;
+                margin-top:50px;
+                vertical-align:bottom;
+            }
+        div.wykres > div b { 
+                top:-20px;
+                display:box;
+                position:relative;
+                text-shadow:5px 5px 5px grey;
+            }   
+        div.wykres div div {
+                color:white;
+                position:relative;
+                top:-19px;
+                text-shadow:0px 0px 5px black;                
+                }
+        
+    </style>
+</head>
+<body>
+    <div id="ramka"></div>
+    <button onclick="wypiszStudentow()">Wypisz</button>
+    <button onclick="wypisz(policz(student))">Policz</button>
+    <button onclick="wykres(policz(student))">Wykres</button>
+    <script>
+        var ramka = document.getElementById("ramka");
+        var student=[ {imie:"Ola",nazwisko:"Lis",kierunek:"fizyka",wzrost:170},
+        {imie:"Ala",nazwisko:"Góral",kierunek:"chemia",wzrost:165},
+        {imie:"Adam",nazwisko:"Kowalski",kierunek:"fizyka",wzrost:152},
+        {imie:"Dominika",nazwisko:"Lato",kierunek:"chemia",wzrost:172},
+        {imie:"Błażej",nazwisko:"Duży",kierunek:"chemia",wzrost:192},
+        {imie:"Adrian",nazwisko:"Skowyrski",kierunek:"fizyka",wzrost:167},
+        {imie:"Jan",nazwisko:"Nowak",kierunek:"fizyka",wzrost:180}];
+
+
+        function policz(s){
+            var odp = {};
+            odp[s[0].kierunek] = 1;
+            for(let i = 1; i<s.length;i++){
+                if(Object.keys(odp).includes(s[i].kierunek)){
+                    odp[s[i].kierunek]++;
+                }else{
+                    odp[s[i].kierunek]=1;
+                }
+            }
+            return odp;
+        }
+
+        function wypiszStudentow(){
+            var s = "<ol>";
+            for(let t of student){
+                s += "<li>"+t.imie+" "+t.nazwisko+" ("+t.kierunek+")</li>";
+            }
+            s+="</ol>"
+            ramka.innerHTML = s;
+        }
+
+        function wypisz(ile){
+            var k = Object.keys(ile);
+            var v = Object.values(ile);
+            var s = "<ul>"; 
+            for(let i = 0;i<k.length;i++){
+                s += "<li>"+k[i]+": "+v[i]+"</li>";
+            }
+            ramka.innerHTML = s + "</ul>";
+        }
+
+        function wykres(dane)
+        {
+            let t='<h1>Wykres ilości studentów na kierunku</h1>';
+            t+='<div class="wykres">';
+            for(let d in dane)
+            {
+                t+="<div style='height:"+dane[d]+"px;background:green'>";
+                t+="<b>"+d+"</b>";
+                t+="<div>"+dane[d]+"</div>";
+                t+="</div>";
+            }
+            
+            t+='</div>';
+            ramka.innerHTML = t;
+        }   
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 7</title>
+</head>
+<body>
+    <canvas id="rys" width="600" height="600"></canvas>
+    <script>
+        var canvas = document.getElementById("rys");
+
+        function domek(x,y,height){
+            if(canvas.getContext){
+                var ctx = canvas.getContext("2d");
+
+                var rectHeight = (height/3)*2;
+                var roofHeight = height/3;
+
+                ctx.fillStyle = "orange";
+                ctx.fillRect(x,y+roofHeight,rectHeight,rectHeight);
+
+                ctx.fillStyle = "lightblue";
+                ctx.fillRect(x+(rectHeight/5),y+roofHeight+(rectHeight/5),(rectHeight/5),(rectHeight/5));
+                ctx.fillRect(x+(rectHeight/5*3),y+roofHeight+(rectHeight/5),(rectHeight/5),(rectHeight/5));
+                
+                ctx.fillStyle = "brown";
+                ctx.fillRect(x+(rectHeight/5*2),y+roofHeight+(rectHeight/5*3),(rectHeight/5),(rectHeight/5*2));
+
+                ctx.beginPath();
+                ctx.moveTo(x,y+roofHeight);
+                ctx.lineTo(x+(rectHeight/2),y);
+                ctx.lineTo(x+rectHeight,y+roofHeight);
+                ctx.fillStyle = "red";
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+
+        function balwan(x,y,height){
+            if(canvas.getContext){
+                var ctx = canvas.getContext("2d");                
+
+                x = x+(height/4);
+                ctx.strokeStyle = "lightblue";
+                ctx.fillStyle = "white";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(x,y+(height/12),height/12,0,Math.PI*2);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(x,y+(height/6*2),height/6,0,Math.PI*2);
+                ctx.fill();
+                ctx.stroke();
+
+                ctx.beginPath();
+                ctx.arc(x,y+(height/12*9),height/6*1.5,0,Math.PI*2);
+                ctx.fill();
+                ctx.stroke();
+            }
+        }
+
+        function choinka(x,y,height){
+            if(canvas.getContext){
+                var ctx = canvas.getContext("2d"); 
+                
+                ctx.fillStyle = "green";
+                ctx.beginPath();
+                ctx.moveTo(x+(height/4),y);
+                ctx.lineTo(x,y+(height/4));
+                ctx.lineTo(x+(height/2),y+(height/4));
+                ctx.lineTo(x+(height/4),y);
+                ctx.fill();
+                ctx.closePath();
+
+                y = y+(height/4);
+                ctx.beginPath();
+                ctx.moveTo(x+(height/4),y);
+                ctx.lineTo(x,y+(height/4));
+                ctx.lineTo(x+(height/2),y+(height/4));
+                ctx.lineTo(x+(height/4),y);
+                ctx.fill();
+                ctx.closePath();
+
+                y = y+(height/4);
+                ctx.beginPath();
+                ctx.moveTo(x+(height/4),y);
+                ctx.lineTo(x,y+(height/4));
+                ctx.lineTo(x+(height/2),y+(height/4));
+                ctx.lineTo(x+(height/4),y);
+                ctx.fill();
+                ctx.closePath();
+
+                ctx.fillStyle = "brown";
+                y = y+(height/4);
+                ctx.fillRect(x+(height/16*3),y,height/8,height/4);
+            }
+        }
+
+        domek(100,100,300);
+        choinka(300,200,200);
+        balwan(360,300,100);
+        domek(450,100,100);
+        choinka(520,150,50);
+        balwan(540,175,25);
+</script>
+</body>
+</html>

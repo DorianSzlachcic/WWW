@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 6</title>
+
+    <style>
+        * {font-family:Arial, Sans}
+        h1,b {font-weight:normal;}
+        div {text-align:center}
+        div.wykres > div {
+                width:50px;
+                margin:15px;
+                box-shadow:10px 10px 5px grey;
+                border:1px solid grey;
+                display:inline-block;
+                margin-top:50px;
+                vertical-align:bottom;
+            }
+        div.wykres > div b { 
+                top:-20px;
+                display:box;
+                position:relative;
+                text-shadow:5px 5px 5px grey;
+            }   
+        div.wykres div div {
+                color:white;
+                position:relative;
+                top:-19px;
+                text-shadow:0px 0px 5px black;                
+                }
+        
+    </style>
+</head>
+<body>
+    <form id="form1" onsubmit="f(this);return false;">
+        <label>Imię: </label><input type="text" name="imie"><br>
+        <label>Nazwisko: </label><input type="text" name="nazwisko"><br>
+        <label>Wzrost: </label><input type="number" name="wzrost"><br>
+        <label>Kierunek: </label><select name="kierunek">
+            <option>Fizyka</option>
+            <option>Astronomia</option>
+            <option>Informatyka</option>
+            <option>Matematyka</option>
+        </select><br>
+        <input type="submit" value="Dodaj">
+    </form>
+    <div id="lista"></div>
+    <div id="wykres"></div>
+    <script>
+        var students = [];
+
+        function f(form){
+            var s = {}
+            s.imie = form.imie.value;
+            s.nazwisko = form.nazwisko.value;
+            s.wzrost = form.wzrost.value;
+            s.kierunek = form.kierunek.value;
+
+            students.push(s);
+            wypiszStudentow();
+            wykres(policz(students));
+        }
+
+        function wypiszStudentow(){
+            var s = "<ol>";
+            for(let t of students){
+                s += "<li>"+t.imie+" "+t.nazwisko+" ("+t.kierunek+")</li>";
+            }
+            s+="</ol>"
+            document.getElementById("lista").innerHTML = s;
+        }
+
+        function policz(s){
+            var odp = {};
+            odp[s[0].kierunek] = 1;
+            for(let i = 1; i<s.length;i++){
+                if(Object.keys(odp).includes(s[i].kierunek)){
+                    odp[s[i].kierunek]++;
+                }else{
+                    odp[s[i].kierunek]=1;
+                }
+            }
+            return odp;
+        }
+
+        function wykres(dane)
+        {
+            let t='<h1>Wykres ilości studentów na kierunku</h1>';
+            t+='<div class="wykres">';
+            for(let d in dane)
+            {
+                t+="<div style='height:"+dane[d]+"px;background:green'>";
+                t+="<b>"+d+"</b>";
+                t+="<div>"+dane[d]+"</div>";
+                t+="</div>";
+            }
+            
+            t+='</div>';
+            document.getElementById("wykres").innerHTML = t;
+        }  
+
+    </script>
+</body>
+</html>
