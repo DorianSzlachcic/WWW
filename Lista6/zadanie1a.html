@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 1a</title>
+</head>
+<body>
+
+    <svg width="200" height="200">
+        <defs>
+            <pattern id="circles" viewBox="0,0,10,10" width="10%" height="10%">
+                <circle cx="5" cy="5" r="5" style="fill:black;" />
+            </pattern>
+            <linearGradient id="gradientLiniowy1" >
+                <stop offset="0%" stop-color="red"/>
+                <stop offset="50%" stop-color="orange"/>
+                <stop offset="100%" stop-color="yellow"/>
+            </linearGradient>
+            <linearGradient id="gradientLiniowy2">
+                <stop offset="0%" stop-color="blue"/>
+                <stop offset="50%" stop-color="purple"/>
+                <stop offset="100%" stop-color="blue"/>
+            </linearGradient>
+            <radialGradient id="gradientKolowy">
+                <stop offset="0%" stop-color="black" />
+                <stop offset="100%" stop-color="white" />
+            </radialGradient>
+        </defs>
+        <ellipse cx="100" cy="100" rx="80" ry="60" style="fill:url(#gradientLiniowy2);"/>
+        <circle cx="30" cy="30" r="10" fill="url(#gradientLiniowy1)" />
+        <rect x="150" y="150" width="50" height="50" style="fill:url(#circles);" />
+        <polygon points="200,0 150,0 175,50" style="fill: url(#gradientLiniowy2); stroke: red; stroke-dasharray: 2,2; stroke-width: 10px; stroke-linejoin: round;" />
+        <polygon points="100,100 110,100 120,113 110,125 100,125 90,113" style="fill: url(#gradientKolowy); stroke: green; stroke-width: 2px;" />
+    </svg>
+</body>
+</html>

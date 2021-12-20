@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Zadanie 1c</title>
+</head>
+<body>
+
+    <svg width="200" height="200">
+        <defs>
+            <pattern id="circles" viewBox="0,0,10,10" width="10%" height="10%">
+                <circle cx="5" cy="5" r="5" style="fill:black;" />
+            </pattern>
+            <linearGradient id="gradientLiniowy1" >
+                <stop offset="0%" stop-color="red"/>
+                <stop offset="50%" stop-color="orange"/>
+                <stop offset="100%" stop-color="yellow"/>
+            </linearGradient>
+            <linearGradient id="gradientLiniowy2">
+                <stop offset="0%" stop-color="blue"/>
+                <stop offset="50%" stop-color="purple"/>
+                <stop offset="100%" stop-color="blue"/>
+            </linearGradient>
+            <radialGradient id="gradientKolowy">
+                <stop offset="0%" stop-color="black" />
+                <stop offset="100%" stop-color="white" />
+            </radialGradient>
+        </defs>
+        <path d="M20,100a80,60 0 1,0 160,0a80,60 0 1,0 -160,0" style="fill:url(#gradientLiniowy2)"/>
+        <path id="ellipse" d="M17,100a83,63 0 1,0 166,0a83,63 0 1,0 -166,0" style="fill-opacity: 0;"/>
+        <text>
+            <textPath href="#ellipse">
+                Najczęściej spotykanym zastosowaniem języka JavaScript są strony internetowe
+            </textPath>
+        </text>
+
+        <path d="M20,30a10,10 0 1,0 20,0a10,10 0 1,0 -20,0" style="fill:url(#gradientLiniowy1)"/>
+        <path id="circle" d="M17,30a13,13 0 1,0 26,0a13,13 0 1,0 -26,0" style="fill-opacity: 0;"/>
+        <text>
+            <textPath href="#circle">
+                WooW
+            </textPath>
+        </text>
+
+        <path d="M150 150 H 200 V 200 H 150z" style="fill:url(#circles)" />
+        <path id="square" d="M147 147 H 203 V 203 H 147z"style="fill-opacity: 0;"/>
+        <text>
+            <textPath href="#square">
+                Bjarne Stroustrup - twórca języka programowania C++. 
+            </textPath>
+        </text>
+        <path d="M200 0 150 0 175 50z" style="fill:url(#gradientLiniowy2);stroke:red;stroke-dasharray:2,2;stroke-width:10px;stroke-linejoin:round" />
+        <path id="triangle" d="M203-3 147-3 175 53z" style="fill-opacity: 0;"/>
+        <text>
+            <textPath href="#triangle">
+                Język C++ jest językiem wieloparadygmatowym
+            </textPath>
+        </text>
+
+        <path d="M100 100 110 100 120 113 110 125 100 125 90 113z" style="fill:url(#gradientKolowy);stroke:green;stroke-width:2px"/>
+        <path id="hexagon" d="M 97 97 113 97 123 113 113 128 97 128 87 113 z" style="fill-opacity: 0;"/>
+        <text>
+            <textPath href="#hexagon">
+                JavaScriptJS
+            </textPath>
+        </text>
+    </svg>
+</body>
+</html>
