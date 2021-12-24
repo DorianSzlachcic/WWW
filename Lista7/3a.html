@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Droppable - Shopping Cart Demo</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <style>
+  #box {width:800px; height: 800px;margin:10px auto;clear:both}
+  #box>div { 
+	  float: left; 
+	  box-sizing:border-box ;
+      border:1px solid green;
+      background:#eee;
+   }
+   #box>div.hover {background:#eff}    
+   .puzzle {display: inline-block; background: blue;background-size: 800px 800px;}
+  </style>
+</head>
+<body>
+
+<div id="box">
+</div>
+
+<div id="puzzles">
+</div>
+
+<script>
+    var size = 4;
+    var imgUrl = "https://michalkowepodroze.pl/wp-content/uploads/gory-sowie.jpg";
+
+    function start()
+      {
+        for(let i=0;i<size;i++)
+        for(let j=0;j<size;j++)
+        {
+          $("#box").append("<div></div>");
+          $("#puzzles").append("<div class='puzzle'></div>");
+        }
+          
+      $( ".puzzle" ).css({backgroundImage: "url("+imgUrl+")", width: parseFloat($("#box").css("width"))/size, height: parseFloat( $("#box").css("height"))/size});
+      $("#box>div").css({width: parseFloat($("#box").css("width"))/size, height: parseFloat( $("#box").css("height"))/size});
+
+      var licznik = 0;
+      for(let i=0;i<size;i++)
+        for(let j=0;j<size;j++)
+        {
+          $(document.getElementsByClassName("puzzle")[licznik]).css({backgroundPositionX: (parseFloat($("#box").css("width"))/size)*i,backgroundPositionY: (parseFloat($("#box").css("height"))/size)*j});
+          licznik++;
+        }
+
+        shufflePuzzles();
+
+      $( ".puzzle" ).draggable({
+        helper: "clone",
+        start: function () {$(this).hide();},
+        stop: function () {$(this).show();}
+      });
+      
+      $( "#box >div" ).droppable({
+        hoverClass: "hover",
+        accept:function(a){ return $(this).html()=='';},
+        drop: function( event, ui ) { ui.draggable.appendTo( this ); }
+      });
+    }
+
+    function shufflePuzzles(){
+        var parent = $("#puzzles");
+        var puzzles = parent.children();
+        while (puzzles.length) {
+          parent.append(puzzles.splice(Math.floor(Math.random() * puzzles.length), 1)[0]);
+        }
+    }
+
+    start();
+  </script>
+</body>
+</html>

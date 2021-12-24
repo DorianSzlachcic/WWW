@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Droppable - Shopping Cart Demo</title>
+  <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <style>
+    h1 {font-size: 20pt; font-family: Arial, Helvetica, sans-serif;}
+    #menu {width: 100px; float: left;}
+  #box {position: absolute;width:800px; height: 800px;margin:10px auto;clear:both; float: left; left: 20%;}
+  #box>div { 
+	  float: left; 
+	  box-sizing:border-box ;
+      border:1px solid green;
+      background:#eee;
+   }
+   #box>div.hover {background:#eff}    
+   #puzzles {width: 400px; float: right;}
+   .puzzle {display: inline-block; background: blue;background-size: 800px 800px;}
+  </style>
+</head>
+<body>
+
+<div id="menu">
+  <h1>Poziom trudności</h1>
+  <div id="difficulty">
+    <button id="4">4</button> <br>  
+    <button id="5">5</button><br>
+    <button id="6">6</button><br>
+    <button id="7">7</button><br>
+    <button id="8">8</button><br>
+    <button id="9">9</button>  <br>
+  </div>
+  <h1>Obrazki</h1>
+  <div id="images">
+    <img src="#" width="100px" height="100px">
+    <img src="#" width="100px" height="100px">
+    <img src="#" width="100px" height="100px">
+    <img src="#" width="100px" height="100px">
+    <img src="#" width="100px" height="100px">
+    <img src="#" width="100px" height="100px">
+    <img src="#" width="100px" height="100px">
+    <img src="#" width="100px" height="100px">
+    <img src="#" width="100px" height="100px">
+    <img src="#" width="100px" height="100px">
+  </div>
+</div>
+
+<div id="box">
+</div>
+
+<div id="puzzles">
+</div>
+
+<script>
+    var size = 4;
+    var imgNumber = 0;
+    var imgUrl = ["https://michalkowepodroze.pl/wp-content/uploads/gory-sowie.jpg", 
+                  "https://oskar.com.pl/FileHandler.ashx?FileID=38489&FormatID=66&TimeStamp=20200507142035",
+                  "https://lh3.googleusercontent.com/proxy/iJjX2DaRpU3Zzb6TVbSSlfo8lM-fC8ZVZmRrhpDCPC7OMjIi-KcQ7e4yAjmVyJWvR5Yhsa8_gGEfXnxqpbRKW6wO4CHeafXvdDKPfWYDM2wuTrmEatrgoA",
+                  "https://www.tasteaway.pl/wp-content/uploads/2020/07/Z%C5%82oty-Stok_kopalnie-990x742.jpg",
+                  "https://d-art.ppstatic.pl/kadry/k/r/8f/57/5d042533dc7ab_o_medium.jpg",
+                  "https://www.smaczneobrazy.pl/wp-content/uploads/2016/04/dolina-chocholowska-tatry-973x649.jpg",
+                  "https://piotrkaluza.pl/app/uploads/lago_di_braies.jpg",
+                  "https://lh3.googleusercontent.com/proxy/0QGVyQViWj9-2zebIqqhZD9IfJwtDAMmrjOl9tYJsy-IATNwIScCw3dWBDtmNg7ZeuOqMGwL3_jFS-vP34UMRKcwiCMdll2xcfOXtR30qOw7VWuCn974sxX1BzjEEQqc6yU",
+                  "https://i.wpimg.pl/985x0/m.fotoblogia.pl/my-own-path-short-story--50e396b.jpg",
+                  "https://i.wpimg.pl/730x0/m.fotoblogia.pl/florian-wenzel-new-zeala-315663d.jpg"];
+
+    function start()
+      {
+        $("#box").empty();
+          $("#puzzles").empty();
+
+        for(let i=0;i<size;i++)
+        for(let j=0;j<size;j++)
+        {
+          $("#box").append("<div></div>");
+          $("#puzzles").append("<div class='puzzle'></div>");
+        }
+          
+      $( ".puzzle" ).css({backgroundImage: "url("+imgUrl[imgNumber]+")", width: parseFloat($("#box").css("width"))/size, height: parseFloat( $("#box").css("height"))/size});
+      $("#box>div").css({width: parseFloat($("#box").css("width"))/size, height: parseFloat( $("#box").css("height"))/size});
+
+      var licznik = 0;
+      for(let i=0;i<size;i++)
+        for(let j=0;j<size;j++)
+        {
+          $(document.getElementsByClassName("puzzle")[licznik]).css({backgroundPositionX: (parseFloat($("#box").css("width"))/size)*i,backgroundPositionY: (parseFloat($("#box").css("height"))/size)*j});
+          licznik++;
+        }
+
+        shufflePuzzles();
+
+      $( ".puzzle" ).draggable({
+        helper: "clone",
+        start: function () {$(this).hide();},
+        stop: function () {$(this).show();}
+      });
+      
+      $( "#box >div" ).droppable({
+        hoverClass: "hover",
+        accept:function(a){ return $(this).html()=='';},
+        drop: function( event, ui ) { ui.draggable.appendTo( this ); }
+      });
+      
+    }
+
+    function shufflePuzzles(){
+        var parent = $("#puzzles");
+        var puzzles = parent.children();
+        while (puzzles.length) {
+          parent.append(puzzles.splice(Math.floor(Math.random() * puzzles.length), 1)[0]);
+        }
+    }
+
+    $(document).ready(function(){
+      start();
+
+      for(let i=0;i<imgUrl.length;i++)
+      {
+        $(document.querySelectorAll("img")[i]).attr("src",imgUrl[i]).load(function(){
+            $(this).click(function(){
+            imgNumber = i;
+            start();
+          });
+        });
+      }
+
+      for(let i=0;i<6;i++)
+      {
+        $(document.querySelectorAll("button")[i]).click(function(){
+          size = i + 4;
+          start();
+        });
+      }
+
+    });
+
+  </script>
+</body>
+</html>

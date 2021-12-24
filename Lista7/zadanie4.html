@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <style>
+         td {height:50px;width:50px;border:1px solid grey;padding:10px}
+         table {margin:auto;border-collapse:collapse;}
+         h1{text-align:center}
+         p {height:40px;width:40px;background:black;margin:0;border-radius:20px}
+         p.active {background:red}
+         body{text-align: center;}
+    </style>
+</head>
+
+<body>
+    <h1>Samotnik</h1>
+<table>
+<tr><th></th><th></th><th></th><td></td><td></td><td></td><th></th><th></th></tr>
+<tr><th></th><th></th><th></th><td></td><td></td><td></td><th></th><th></th></tr>
+<tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th></th><td></td><td></td><td></td><td>x</td><td></td><td></td><td></td></tr>
+<tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th></th><th></th><th></th><td></td><td></td><td></td><th></th><th></th></tr>
+<tr><th></th><th></th><th></th><td></td><td></td><td></td><th></th><th></th></tr>
+</table>
+<br>
+<button onclick="location=location">Nowa Gra</button>
+
+<script>
+    
+    let all=document.querySelectorAll('td,th');
+    let td=document.querySelectorAll('td');
+    let h1=document.querySelector('h1');
+    let i=0,ile=-1,active={};
+
+    for(let x of all)   
+        x.nr=i++;
+
+    for(let x of td)   
+    {
+        ile++;
+        if(x.innerHTML=='x')         
+            x.innerHTML=''
+        else
+            x.innerHTML='<p></p>';
+    }
+
+    $( "p" ).draggable({
+        helper: "clone",
+        start: function () {$(this).hide(); $(this).addClass("active"); active = this;},
+        stop: function () {$(this).show();$(this).removeClass("active");}
+      });
+
+    $( "td" ).droppable({
+        accept: acceptFunc,
+        drop: dropFunc
+    });
+
+    function dropFunc(){
+        middle= (this.nr+active.parentNode.nr)/2 ;
+        all[middle].innerHTML='';
+        $(this).prepend(active);     
+        if(--ile==1)               
+            h1.innerHTML='Wygrałeś!!!'
+    }
+
+    function acceptFunc()
+    {   
+        if($(this).html()=='')                    
+            switch(Math.abs(this.nr-active.parentNode.nr)) 
+            { 
+                case 2:case 16:                  
+                    middle= (this.nr+active.parentNode.nr)/2 ; 
+                    if(all[middle].innerHTML!='') 
+                    {
+                        return true;
+                    }
+                default:
+                    return false;
+            }            
+    }
+    
+    
+</script>
+
+</body>
+</html>
