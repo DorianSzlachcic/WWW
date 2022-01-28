@@ -117,7 +117,7 @@
         var parent = $("#puzzles");
         var puzzles = parent.children();
         while (puzzles.length) {
-          parent.append(puzzles.splice(Math.floor(Math.random() * puzzles.length), 1)[0]);
+          parent.append(puzzles.splice(Math.floor(Math.random() * puzzles.length), 1));
         }
     }
 

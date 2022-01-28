@@ -1,0 +1,35 @@
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter ".help" for usage hints.
+sqlite> .mode column
+sqlite> .headers on
+sqlite> create table studenci(id integer primary key autoincrement, imie char(10),nazwisko char(40), plec char(1), ur date, album int, kierunek varchar(50));
+sqlite> insert into studenci(imie,nazwisko,plec,ur,album,kierunek) values("Adam","Kowalski","m","2002-12-03",123456,"astronomia");
+sqlite> insert into studenci(imie,nazwisko,plec,ur,album,kierunek) values("Jacek","Stefanski","m","2001-03-15",123458,"astronomia");
+sqlite> insert into studenci(imie,nazwisko,plec,ur,album,kierunek) values("Mariola","Lato","k","1999-06-26",176458,"fizyka");
+sqlite> insert into studenci(imie,nazwisko,plec,ur,album,kierunek) values("Marzena","Nowak","k","1999-08-01",176138,"fizyka");
+sqlite> select * from studenci order by ur;
+id          imie        nazwisko    plec        ur          album       kierunek  
+----------  ----------  ----------  ----------  ----------  ----------  ----------
+3           Mariola     Lato        k           1999-06-26  176458      fizyka    
+4           Marzena     Nowak       k           1999-08-01  176138      fizyka    
+2           Jacek       Stefanski   m           2001-03-15  123458      astronomia
+1           Adam        Kowalski    m           2002-12-03  123456      astronomia
+sqlite> alter table studenci add wzrost integer;
+sqlite> UPDATE studenci SET wzrost=178 WHERE nazwisko="Lato"
+   ...> ;
+sqlite> UPDATE studenci SET wzrost=190 WHERE nazwisko="Stefanski";
+sqlite> UPDATE studenci SET wzrost=182 WHERE nazwisko="Nowak";
+sqlite> UPDATE studenci SET wzrost=156 WHERE nazwisko="Kowalski";
+sqlite> SELECT * FROM studenci WHERE kierunek="fizyka" ORDER BY wzrost
+   ...> ;
+id          imie        nazwisko    plec        ur          album       kierunek    wzrost    
+----------  ----------  ----------  ----------  ----------  ----------  ----------  ----------
+3           Mariola     Lato        k           1999-06-26  176458      fizyka      178       
+4           Marzena     Nowak       k           1999-08-01  176138      fizyka      182       
+sqlite> SELECT * FROM studenci WHERE kierunek="fizyka" AND plec="k" ORDER BY imie
+   ...> ;
+id          imie        nazwisko    plec        ur          album       kierunek    wzrost    
+----------  ----------  ----------  ----------  ----------  ----------  ----------  ----------
+3           Mariola     Lato        k           1999-06-26  176458      fizyka      178       
+4           Marzena     Nowak       k           1999-08-01  176138      fizyka      182       
+sqlite> 

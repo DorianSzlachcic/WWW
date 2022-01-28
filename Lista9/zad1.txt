@@ -1,0 +1,124 @@
+SQLite version 3.22.0 2018-01-22 18:45:57
+Enter ".help" for usage hints.
+sqlite> select * from osoby
+   ...> ;
+23|Marek|Marecki|m|Opole i nie tylko. Na przykład bardzo lubi Gdańsk i inne miasta. Także Wrocław może być brany pod uwagę.
+
+25|Marek|Marecki|m|Wrocław Południe i popołudnie.
+
+Nie wie jak się ukryć.
+
+27|Marek|Marecki-Żółtkiewicz|m|Wrocław to jego miasto spotkań.
+
+30|Marek|Jureczek|m|Wrocław-Psie Pole
+
+31|Marynia|Co się dzieje|k|Nie jest zbyt bystra ale za to ładna,
+też jednak nie.
+32|Maurycy|Dmowski|m|Jest niewielki ale boski.
+33|Ola |Juszczak|k|ma teraz 23 lata.
+34|Maria|Konopnicka|k|Pisarka. autorka książek dla dzieci.
+35|Ewa|Kopacz|k|<b>Była</b>  &nbsp;233 ' 'as ""ad \\ asda\\\asd ola <i> 
+sqlite> .mode columns
+sqlite> .headers on
+sqlite> select * from osoby;
+id          imie        nazwisko    plec        opis                                                                                                      
+----------  ----------  ----------  ----------  ----------------------------------------------------------------------------------------------------------
+23          Marek       Marecki     m           Opole i nie tylko. Na przykład bardzo lubi Gdańsk i inne miasta. Także Wrocław może być brany pod uwagę.
+
+25          Marek       Marecki     m           Wrocław Południe i popołudnie.
+
+Nie wie jak się ukryć.
+                                                
+27          Marek       Marecki-Żó  m           Wrocław to jego miasto spotkań.
+                                                                         
+30          Marek       Jureczek    m           Wrocław-Psie Pole
+                                                                                       
+31          Marynia     Co się dzi  k           Nie jest zbyt bystra ale za to ładna,
+też jednak nie.                                                    
+32          Maurycy     Dmowski     m           Jest niewielki ale boski.                                                                                 
+33          Ola         Juszczak    k           ma teraz 23 lata.                                                                                         
+34          Maria       Konopnicka  k           Pisarka. autorka książek dla dzieci.                                                                      
+35          Ewa         Kopacz      k           <b>Była</b>  &nbsp;233 ' 'as ""ad \\ asda\\\asd ola <i>                                                   
+sqlite> select imie, nazwisko from osoby;
+imie        nazwisko  
+----------  ----------
+Marek       Marecki   
+Marek       Marecki   
+Marek       Marecki-Żó
+Marek       Jureczek  
+Marynia     Co się dzi
+Maurycy     Dmowski   
+Ola         Juszczak  
+Maria       Konopnicka
+Ewa         Kopacz    
+sqlite> delete from osoby where imie='Marek';
+sqlite> select imie, nazwisko from osoby;
+imie        nazwisko     
+----------  -------------
+Marynia     Co się dzieje
+Maurycy     Dmowski      
+Ola         Juszczak     
+Maria       Konopnicka   
+Ewa         Kopacz       
+sqlite> select * from osoby order by nazwisko,imie;
+id          imie        nazwisko       plec        opis                                                  
+----------  ----------  -------------  ----------  ------------------------------------------------------
+31          Marynia     Co się dzieje  k           Nie jest zbyt bystra ale za to ładna,
+też jednak nie.
+32          Maurycy     Dmowski        m           Jest niewielki ale boski.                             
+33          Ola         Juszczak       k           ma teraz 23 lata.                                     
+34          Maria       Konopnicka     k           Pisarka. autorka książek dla dzieci.                  
+35          Ewa         Kopacz         k           <b>Była</b>  &nbsp;233 ' 'as ""ad \\ asda\\\asd ola <i
+sqlite> select * from osoby order by nazwisko desc,imie desc;
+id          imie        nazwisko    plec        opis                                                    
+----------  ----------  ----------  ----------  --------------------------------------------------------
+35          Ewa         Kopacz      k           <b>Była</b>  &nbsp;233 ' 'as ""ad \\ asda\\\asd ola <i> 
+34          Maria       Konopnicka  k           Pisarka. autorka książek dla dzieci.                    
+33          Ola         Juszczak    k           ma teraz 23 lata.                                       
+32          Maurycy     Dmowski     m           Jest niewielki ale boski.                               
+31          Marynia     Co się dzi  k           Nie jest zbyt bystra ale za to ładna,
+też jednak nie.  
+sqlite> insert into osoby(imie,nazwisko) values('Albert','Einstein');
+sqlite> select imie, nazwisko from osoby;
+imie        nazwisko     
+----------  -------------
+Marynia     Co się dzieje
+Maurycy     Dmowski      
+Ola         Juszczak     
+Maria       Konopnicka   
+Ewa         Kopacz       
+Albert      Einstein     
+sqlite> update osoby set opis='geniusz' where nazwisko='Einstein';
+sqlite> select * from osoby;
+id          imie        nazwisko       plec        opis                                                  
+----------  ----------  -------------  ----------  ------------------------------------------------------
+31          Marynia     Co się dzieje  k           Nie jest zbyt bystra ale za to ładna,
+też jednak nie.
+32          Maurycy     Dmowski        m           Jest niewielki ale boski.                             
+33          Ola         Juszczak       k           ma teraz 23 lata.                                     
+34          Maria       Konopnicka     k           Pisarka. autorka książek dla dzieci.                  
+35          Ewa         Kopacz         k           <b>Była</b>  &nbsp;233 ' 'as ""ad \\ asda\\\asd ola <i
+37          Albert      Einstein                   geniusz                                               
+sqlite> insert into osoby(imie,nazwisko) values('Dorian','Szlachcic');
+sqlite> select id from osoby where imie='Dorian';
+id        
+----------
+38        
+sqlite> update osoby set opis='Student ISSP' where id='38';
+sqlite> select * from osoby where id='38';
+id          imie        nazwisko    plec        opis        
+----------  ----------  ----------  ----------  ------------
+38          Dorian      Szlachcic               Student ISSP
+sqlite> select imie from osoby where plec='k' order by imie
+   ...> ;
+imie      
+----------
+Ewa       
+Maria     
+Marynia   
+Ola       
+sqlite> select imie from osoby where plec='m' order by imie desc;
+imie      
+----------
+Maurycy   
+sqlite> 
