@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    <title>Projekt 2</title>
+    <style>
+        * {font-family: Arial;}
+
+        h1, h2 {
+            font-size: 30px;
+            margin: 0;
+        }
+
+        #gamewindow {
+            width: 800px;
+            height: 700px;
+            border: 2px solid black;
+            padding: 0px;
+            background-color: darkgrey;
+        }
+
+        #player {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            top: 660px;
+        }
+
+        #treasure {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            margin: 0;
+        }
+
+        #bomb {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            margin: 0;
+        }
+        
+        button {
+            display: block;
+            margin: 0 auto;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Łapanie skarbów</h1>
+    <div id="gamewindow">
+        <img src="img/chest.png" id="player"/>
+    </div>
+    <h2 id="points"></h2><br>
+    <button onclick="newGame()">Nowa gra</button>
+
+    <script>
+        let run = true;
+        let offset = {x: 10,y:55};
+        let gamewindow = $("#gamewindow");
+        let player = $("#player");
+        player.x = 360+offset.x;
+        let treasures = [];
+        let bombs = [];
+        let points = 0;
+
+        let timeoutID = 0;
+        let objectTimeout = 0;
+
+
+        $(document).keydown(function(event) {
+            if(run){
+                var a = event.keyCode;
+                if(a==37 && player.x > 0+offset.x) player.x -= 30;
+                if(a==39 && player.x < 720+offset.x) player.x += 30;
+            }
+            
+        });
+
+        function addTreasure() {
+            let imgs = ["img/diamond.png","img/coin.png","img/grall.png"];
+
+            gamewindow.append("<img src='"+imgs[Math.floor(Math.random()*3)]+"' id='treasure'/>");
+            let x = Math.floor(Math.random()*780)+offset.x;
+            $("#treasure:last-child").css({"top": 0, "left": x});
+            treasures.push($("#treasure:last-child"));
+            treasures[treasures.length-1].y = offset.y;
+            treasures[treasures.length-1].x = x;
+            objectTimeout = setTimeout(addObject, 1500 - points*20);
+        }
+
+        function addBomb() {
+            gamewindow.append("<img src='img/bomb.png' id='bomb'/>");
+            let x = Math.floor(Math.random()*780)+offset.x;
+            $("#bomb:last-child").css({"top": 0, "left": x});
+            bombs.push($("#bomb:last-child"));
+            bombs[bombs.length-1].y = offset.y;
+            bombs[bombs.length-1].x = x;
+            objectTimeout = setTimeout(addObject, 1500 - points*20);
+        }
+
+        function addObject() {
+            let choice = Math.floor(Math.random()*100);
+            if (choice <= 30) {
+                addBomb();
+            }
+            else {
+                addTreasure();
+            }
+        }
+
+        function update(){
+            player.css("left",player.x);
+            
+
+            for(let x of treasures){
+                if(x.x <= player.x + 80 && x.x >= player.x-30 && x.y >= 630+offset.y){
+                    let index = treasures.indexOf(x);
+                    x.remove();
+                    treasures.splice(index,1);
+                    points++;
+                    $("#points").html("Punkty: "+points.toString());
+                }
+
+                if(x.y >670+offset.y){
+                    let index = treasures.indexOf(x);
+                    x.remove();
+                    treasures.splice(index,1);
+                    points--;
+                    $("#points").html("Punkty: "+points.toString());
+
+                }
+                x.y += 5;
+                x.css("top",x.y);
+            }
+
+            for(let x of bombs){
+                if(x.x <= player.x + 80 && x.x >= player.x-30 && x.y >= 630+offset.y){
+                    let index = bombs.indexOf(x);
+                    x.remove();
+                    bombs.splice(index,1);
+                    gameOver();
+                }
+
+                if(x.y >670+offset.y){
+                    let index = bombs.indexOf(x);
+                    x.remove();
+                    bombs.splice(index,1);
+                }
+                x.y += 10;
+                x.css("top",x.y);
+            }
+
+
+
+            timeoutID = setTimeout(update, 20);
+        }
+
+        function gameOver() {
+            clearTimeout(timeoutID);
+            clearTimeout(objectTimeout);
+            $("#points").html("Koniec Gry!!! Zdobyłeś " + points.toString() + " punktów!");
+            treasures = [];
+            $("#treasure").remove();
+            bombs = [];
+            $("#bomb").remove();
+            run = false;
+        }
+
+        function newGame() {
+            points = 0;
+            run = true;
+            treasures = [];
+            $("#treasure").remove();
+            bombs = [];
+            $("#bomb").remove();
+            player.css("top",620+offset.y);
+            player.x = 360+offset.x;
+            player.css("left",player.x);
+
+            $("#points").html("Punkty: "+points.toString());
+
+
+            clearTimeout(timeoutID);
+            clearTimeout(objectTimeout);
+            addBomb();
+            update();
+        }
+
+        newGame();
+    </script>
+</body>
+</html>
