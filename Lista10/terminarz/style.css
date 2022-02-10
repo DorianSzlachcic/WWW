@@ -1,0 +1,106 @@
+* {font-family: Arial, Helvetica, sans-serif;}
+
+#menu a {
+    display: block;
+    float: left;
+    width: 150px;
+    height: 30px;
+    margin: 15px;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 8%;
+    background-color: grey;
+    color: whitesmoke;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: darkslateblue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+table th, table td, table{
+    border: 1px solid black;
+}
+
+#terminy {
+    width: 800px;
+}
+
+#terminy td, #terminy th {
+    text-align: center;
+    height: 50px;
+}
+
+#terminy td{
+    background-color: lightgray;
+}
+
+#tyg th, #tyg td {
+    height: 60px;
+    width: 100px;
+    padding: 0;
+
+}
+
+#mies th, #mies td{
+    width: 200px;
+    height: 100px;
+    padding: 0;
+}
+
+#mies td {
+    vertical-align: top;
+    font-size: 15px;
+}
+
+#mies .active{
+    font-weight: bold;
+    background-color: lightgray;
+}
+
+#mies .inactive{
+    font-weight: lighter;
+    background-color: darkgray;
+}
+
+#mies #monthName{
+    vertical-align: middle;
+    text-align: center;
+    height: 30px;
+    font-size: 20px;
+    background-color: gray;
+}
+
+.tygtermin {
+    width: 100px;
+    background-color: blue;
+    position: absolute;
+    z-index: -2;
+}
+
+.miestermin {
+    width: 200px;
+    background-color: blue;
+}
+
+button{
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.header {
+    z-index: -1;
+    background-color: grey;
+    position: sticky;
+    top: 0;
+}

@@ -1,0 +1,3 @@
+Gra polega na łapaniu skarbów do skrzyni i na omijaniu bomb.
+Skrzynią sterujemy za pomocą strzałek.
+Prędkość i częstotliwość spadania elementów zależy od ilości punktów
